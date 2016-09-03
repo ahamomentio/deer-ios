@@ -19,17 +19,6 @@ class SurveyListView: UITableViewController {
     var surveyKeys: [String] = []
     var data: [Survey] = []
     
-    func delay(delay: Double, closure: ()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(),
-            closure
-        )
-    }
-    
     func getValidSurveysForUserID(userID: String) {
         database.reference().child("/users-permissions").child(userID).observeEventType(.Value, withBlock: { (permissedSurveys) in
             
@@ -77,7 +66,8 @@ class SurveyListView: UITableViewController {
                                             key: survey.value["key"] as! String))
                     self.tableView.reloadData()
                 } else {
-                    print("Not permitted to access: " + String(survey.value["key"] as! String))
+                    let surveyKey = String(survey.value["key"] as! String)
+                    print("Not permitted to access: " + surveyKey)
                 }
             }
             

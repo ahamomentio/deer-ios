@@ -4,10 +4,9 @@
 target 'Deer' do
 	pod 'Fabric'
 	pod 'TwitterCore'
-    pod 'Digits'
     pod 'Crashlytics'
     pod 'TwitterKit'
+    pod 'Digits'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
-    pod 'Firebase/Storage'
 end

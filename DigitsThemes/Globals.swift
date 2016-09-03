@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 extension String {
     func toBool() -> Bool? {
@@ -22,4 +21,17 @@ extension String {
     }
 }
 
+func delay(delay: Double, closure: ()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(),
+        closure
+    )
+}
+
 var currentSurvey = "ABCD"
+var currentQuestion: Question?
+var currentQNumber: Int = 0

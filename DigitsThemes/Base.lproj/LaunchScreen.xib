@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11198.2" systemVersion="16A201w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11198.2" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -19,17 +19,25 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2016 Aha Moment. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
                     <color key="textColor" red="0.7750823926" green="0.79193123919999997" blue="0.80685314119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="W3Z-fG-aBV">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="280" id="XG2-O0-C7r"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="3eY-md-0DG"/>
+                <constraint firstItem="W3Z-fG-aBV" firstAttribute="centerX" secondItem="KOt-kq-NUc" secondAttribute="centerX" id="9Tl-Uy-HF8"/>
+                <constraint firstItem="W3Z-fG-aBV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="62" id="C2z-2w-Eey"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="KOt-kq-NUc" secondAttribute="centerX" id="KqV-3T-CIw"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="99" id="NZa-wY-QWi"/>
                 <constraint firstItem="KOt-kq-NUc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pGB-4I-CGh"/>
+                <constraint firstItem="W3Z-fG-aBV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qAP-8m-ArF"/>
                 <constraint firstItem="KOt-kq-NUc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ya1-fy-s0S"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -38,6 +46,6 @@
         </view>
     </objects>
     <resources>
-        <image name="AppLogo" width="512" height="512"/>
+        <image name="AppLogo" width="550" height="550"/>
     </resources>
 </document>

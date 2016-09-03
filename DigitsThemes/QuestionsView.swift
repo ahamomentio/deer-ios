@@ -19,17 +19,6 @@ class QuestionsView: UITableViewController {
     var surveyKeys: [String] = []
     var data: [Question] = []
     
-    func delay(delay: Double, closure: ()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(),
-            closure
-        )
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +28,14 @@ class QuestionsView: UITableViewController {
             
             for questions in snapshot {
                 
-                print(questions)
+                
+                let tempTitle = ((questions as! FIRDataSnapshot).value!["q"]!)! as! String
+                let tempAnswers = ((questions as! FIRDataSnapshot).value!["a"]!)! as! NSMutableArray
+                let tempType = ((questions as! FIRDataSnapshot).value!["type"]!)! as! String as String
+                
+                self.data.append(Question(type: tempType, possibleAnswers: tempAnswers, questions: tempTitle))
+                self.tableView.reloadData()
+                
                 
             }
             
@@ -56,9 +52,16 @@ class QuestionsView: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("question", forIndexPath: indexPath) as! QuestionCell
         
-        cell.questionNumb.text = "Question #X"
+        cell.questionNumb.text = "Question #" + String(indexPath.item + 1)
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        currentQuestion = data[indexPath.item]
+        currentQNumber = indexPath.item
+        
     }
     
 }

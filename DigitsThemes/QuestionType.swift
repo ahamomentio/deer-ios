@@ -10,10 +10,10 @@ import Foundation
 
 class Question {
     var type: String
-    var possibleAnswers: [Int : String]
+    var possibleAnswers: NSMutableArray
     var questions: String
     
-    init(type: String, possibleAnswers: [Int: String], questions: String) {
+    init(type: String, possibleAnswers: NSMutableArray, questions: String) {
         self.type = type
         self.possibleAnswers = possibleAnswers
         self.questions = questions

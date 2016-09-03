@@ -16,6 +16,7 @@
 		165F57C81D78C478008CB287 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165F57C71D78C478008CB287 /* HomeView.swift */; };
 		166E8D771D78F3B300E1F261 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 166E8D761D78F3B300E1F261 /* GoogleService-Info.plist */; };
 		166E8D791D78F7BE00E1F261 /* SurveyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E8D781D78F7BE00E1F261 /* SurveyListView.swift */; };
+		1683EB8B1D7ADD030069E59B /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683EB8A1D7ADD030069E59B /* AnswerView.swift */; };
 		16AED5AC1D762B7C00C82C1D /* One.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16AED5AA1D762B7C00C82C1D /* One.storyboard */; };
 		16AED5AE1D763A4D00C82C1D /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AED5AD1D763A4D00C82C1D /* InitView.swift */; };
 		16BADE2C1D7A478700813E2E /* AddSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BADE2B1D7A478700813E2E /* AddSurveyView.swift */; };
@@ -38,6 +39,7 @@
 		165F57C71D78C478008CB287 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		166E8D761D78F3B300E1F261 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		166E8D781D78F7BE00E1F261 /* SurveyListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyListView.swift; sourceTree = "<group>"; };
+		1683EB8A1D7ADD030069E59B /* AnswerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		16AED5AB1D762B7C00C82C1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/One.storyboard; sourceTree = "<group>"; };
 		16AED5AD1D763A4D00C82C1D /* InitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
 		16BADE2B1D7A478700813E2E /* AddSurveyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSurveyView.swift; sourceTree = "<group>"; };
@@ -84,20 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				04AE186B1B7C01AD00F7AE76 /* AppDelegate.swift */,
-				165F57C71D78C478008CB287 /* HomeView.swift */,
-				16AED5AD1D763A4D00C82C1D /* InitView.swift */,
-				04AE186D1B7C01AD00F7AE76 /* SignInView.swift */,
-				166E8D781D78F7BE00E1F261 /* SurveyListView.swift */,
-				16C3DB4E1D79E77900F2E13F /* SurveyCell.swift */,
-				16F034FD1D7AA1C200530624 /* QuestionCell.swift */,
-				163A4E9C1D7A0245009A8C4E /* SurveyType.swift */,
-				16BADE2B1D7A478700813E2E /* AddSurveyView.swift */,
 				1624B3EF1D7A89AF0070DD6E /* Globals.swift */,
-				16F034FB1D7AA0C900530624 /* QuestionsView.swift */,
-				16F034FF1D7AA2BF00530624 /* QuestionType.swift */,
-				16AED5AA1D762B7C00C82C1D /* One.storyboard */,
+				16F035041D7AB30C00530624 /* Cells */,
+				16F035021D7AB2EA00530624 /* Types */,
+				16F035031D7AB2F900530624 /* Views */,
+				16F035051D7AB32100530624 /* Storyboards */,
 				04AE18721B7C01AD00F7AE76 /* Images.xcassets */,
-				04AE18741B7C01AD00F7AE76 /* LaunchScreen.xib */,
 				04AE18691B7C01AD00F7AE76 /* Supporting Files */,
 			);
 			name = Deer;
@@ -111,6 +105,47 @@
 				04AE186A1B7C01AD00F7AE76 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		16F035021D7AB2EA00530624 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				163A4E9C1D7A0245009A8C4E /* SurveyType.swift */,
+				16F034FF1D7AA2BF00530624 /* QuestionType.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		16F035031D7AB2F900530624 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				165F57C71D78C478008CB287 /* HomeView.swift */,
+				16AED5AD1D763A4D00C82C1D /* InitView.swift */,
+				04AE186D1B7C01AD00F7AE76 /* SignInView.swift */,
+				166E8D781D78F7BE00E1F261 /* SurveyListView.swift */,
+				16BADE2B1D7A478700813E2E /* AddSurveyView.swift */,
+				16F034FB1D7AA0C900530624 /* QuestionsView.swift */,
+				1683EB8A1D7ADD030069E59B /* AnswerView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		16F035041D7AB30C00530624 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				16C3DB4E1D79E77900F2E13F /* SurveyCell.swift */,
+				16F034FD1D7AA1C200530624 /* QuestionCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		16F035051D7AB32100530624 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				16AED5AA1D762B7C00C82C1D /* One.storyboard */,
+				04AE18741B7C01AD00F7AE76 /* LaunchScreen.xib */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		91DCCA9C3590ED4238541553 /* Frameworks */ = {
@@ -271,6 +306,7 @@
 			files = (
 				16BADE2C1D7A478700813E2E /* AddSurveyView.swift in Sources */,
 				16F035001D7AA2BF00530624 /* QuestionType.swift in Sources */,
+				1683EB8B1D7ADD030069E59B /* AnswerView.swift in Sources */,
 				16AED5AE1D763A4D00C82C1D /* InitView.swift in Sources */,
 				04AE186E1B7C01AD00F7AE76 /* SignInView.swift in Sources */,
 				163A4E9D1D7A0245009A8C4E /* SurveyType.swift in Sources */,
@@ -398,6 +434,7 @@
 			baseConfigurationReference = A54A6F199F883A9F22849695 /* Pods-Deer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				DEVELOPMENT_TEAM = 32GD25B54E;
 				INFOPLIST_FILE = DigitsThemes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -406,6 +443,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.ahamoment.deer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
@@ -415,6 +453,7 @@
 			baseConfigurationReference = CD290B0D57680BD8AB011A04 /* Pods-Deer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				DEVELOPMENT_TEAM = 32GD25B54E;
 				INFOPLIST_FILE = DigitsThemes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
