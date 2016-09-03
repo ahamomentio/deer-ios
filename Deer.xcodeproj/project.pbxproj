@@ -11,6 +11,7 @@
 		04AE186E1B7C01AD00F7AE76 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE186D1B7C01AD00F7AE76 /* SignInView.swift */; };
 		04AE18731B7C01AD00F7AE76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04AE18721B7C01AD00F7AE76 /* Images.xcassets */; };
 		04AE18761B7C01AD00F7AE76 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AE18741B7C01AD00F7AE76 /* LaunchScreen.xib */; };
+		160936C91D7B2B350032C79C /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160936C81D7B2B350032C79C /* AccountInfoView.swift */; };
 		1624B3F01D7A89AF0070DD6E /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B3EF1D7A89AF0070DD6E /* Globals.swift */; };
 		163A4E9D1D7A0245009A8C4E /* SurveyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163A4E9C1D7A0245009A8C4E /* SurveyType.swift */; };
 		165F57C81D78C478008CB287 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165F57C71D78C478008CB287 /* HomeView.swift */; };
@@ -34,6 +35,7 @@
 		04AE186D1B7C01AD00F7AE76 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		04AE18721B7C01AD00F7AE76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04AE18751B7C01AD00F7AE76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		160936C81D7B2B350032C79C /* AccountInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
 		1624B3EF1D7A89AF0070DD6E /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		163A4E9C1D7A0245009A8C4E /* SurveyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyType.swift; sourceTree = "<group>"; };
 		165F57C71D78C478008CB287 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				16BADE2B1D7A478700813E2E /* AddSurveyView.swift */,
 				16F034FB1D7AA0C900530624 /* QuestionsView.swift */,
 				1683EB8A1D7ADD030069E59B /* AnswerView.swift */,
+				160936C81D7B2B350032C79C /* AccountInfoView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				16AED5AE1D763A4D00C82C1D /* InitView.swift in Sources */,
 				04AE186E1B7C01AD00F7AE76 /* SignInView.swift in Sources */,
 				163A4E9D1D7A0245009A8C4E /* SurveyType.swift in Sources */,
+				160936C91D7B2B350032C79C /* AccountInfoView.swift in Sources */,
 				166E8D791D78F7BE00E1F261 /* SurveyListView.swift in Sources */,
 				165F57C81D78C478008CB287 /* HomeView.swift in Sources */,
 				04AE186C1B7C01AD00F7AE76 /* AppDelegate.swift in Sources */,

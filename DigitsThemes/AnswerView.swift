@@ -14,24 +14,41 @@ import TwitterKit
 import Speech
 
 class AnswerView: UIViewController, SFSpeechRecognizerDelegate {
+ 
+    @IBOutlet weak var qTitle: UILabel!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var microphoneButton: UIButton!
+    private let speechRecognizer = SFSpeechRecognizer(locale: NSLocale(localeIdentifier: "en-US"))
     
-    @IBOutlet var qTitle: UILabel!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-    private let speechRecognizer = SFSpeechRecognizer(locale: NSLocale(localeIdentifier: "en-US"))
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.qTitle.text = currentQuestion?.questions
+        let dbRef: FIRDatabaseReference = FIRDatabase.database().reference().child("/user-answers").child((Twitter.sharedInstance().sessionStore.session()?.userID)!).child(currentSurvey).child(String(currentQNumber))
+        
+        dbRef.observeSingleEventOfType(.Value) { (snapshot, error) in
+            
+            if snapshot.value == nil {
+                print("No previous answer")
+            } else {
+                self.textView.text = snapshot.value! as! String
+            }
+            
+        }
+        
+        qTitle.text = currentQuestion?.questions
+        
+        microphoneButton.enabled = false  //2
+        
+        speechRecognizer!.delegate = self  //3
         
         SFSpeechRecognizer.requestAuthorization { (authStatus) in  //4
             
             var isButtonEnabled = false
-        
-            self.speechRecognizer!.delegate = self
             
             switch authStatus {  //5
             case .Authorized:
@@ -49,8 +66,24 @@ class AnswerView: UIViewController, SFSpeechRecognizerDelegate {
                 isButtonEnabled = false
                 print("Speech recognition not yet authorized")
             }
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.microphoneButton.enabled = isButtonEnabled
+            }
         }
         
+    }
+    
+    @IBAction func microphoneTapped() {
+        if audioEngine.running {
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            microphoneButton.enabled = false
+            microphoneButton.setTitle("Start Recording", forState: .Normal)
+        } else {
+            startRecording()
+            microphoneButton.setTitle("Stop Recording", forState: .Normal)
+        }
     }
     
     func startRecording() {
@@ -81,16 +114,16 @@ class AnswerView: UIViewController, SFSpeechRecognizerDelegate {
         
         recognitionRequest.shouldReportPartialResults = true
         
-        recognitionTask = speechRecognizer?.recognitionTaskWithRequest(recognitionRequest, resultHandler: { (result, error) in
+        recognitionTask = speechRecognizer!.recognitionTaskWithRequest(recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
             
             if result != nil {
                 
-                print((result?.bestTranscription.formattedString)!)
+                self.textView.text = result?.bestTranscription.formattedString
                 FIRDatabase.database().reference().child("/user-answers").child((Twitter.sharedInstance().sessionStore.session()?.userID)!).child(currentSurvey).child(String(currentQNumber)).setValue((result?.bestTranscription.formattedString)!)
                 
-                
+                isFinal = (result?.final)!
             }
             
             if error != nil || isFinal {
@@ -100,6 +133,7 @@ class AnswerView: UIViewController, SFSpeechRecognizerDelegate {
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
                 
+                self.microphoneButton.enabled = true
             }
         })
         
@@ -116,16 +150,16 @@ class AnswerView: UIViewController, SFSpeechRecognizerDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        print("Say something, I'm listening!")
+        textView.text = "Say something, I'm listening!"
         
     }
+
     
-    @IBAction func microphoneTapped(sender: AnyObject) {
-        if audioEngine.running {
-            audioEngine.stop()
-            recognitionRequest?.endAudio()
+    func speechRecognizer(speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        if available {
+            microphoneButton.enabled = true
         } else {
-            startRecording()
+            microphoneButton.enabled = false
         }
     }
     

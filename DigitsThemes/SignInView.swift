@@ -8,6 +8,8 @@
 
 import UIKit
 import TwitterKit
+import FirebaseAuth
+import Firebase
 
 class SignInView: UIViewController {
     
@@ -17,11 +19,20 @@ class SignInView: UIViewController {
         let logInButton = TWTRLogInButton { (session, error) in
             if let unwrappedSession = session {
                 
-                NSLog("User: %@ logged in", unwrappedSession.userName)
-                delay(1) {
-                    self.performSegueWithIdentifier("signedIn", sender: self)
-                }
+                let credential = FIRTwitterAuthProvider.credentialWithToken(unwrappedSession.authToken, secret: unwrappedSession.authTokenSecret)
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 
+                    if let e = error {
+                        print(e)
+                    } else {
+                    
+                        NSLog("User: %@ logged in", unwrappedSession.userName)
+                        delay(1) {
+                            self.performSegueWithIdentifier("signedIn", sender: self)
+                        }
+                    }
+
+                }
             } else {
                 NSLog("Login error: %@", error!.localizedDescription);
             }

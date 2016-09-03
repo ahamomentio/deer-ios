@@ -74,8 +74,24 @@ class AddSurveyView: UIViewController, UITextFieldDelegate {
                     
                     self.databaseRef.child("/users-permissions").child(userID).child("granted").child(key).observeEventType(.Value, withBlock: { (snapshot) in
                         
-                        let val = snapshot.value?.boolValue
-                        self.checkFromVal(val!, key: key, userID: userID, surveyWithEntredKey: surveyWithEntredKey!)
+                        if let val = snapshot.value?.boolValue {
+                            self.checkFromVal(val, key: key, userID: userID, surveyWithEntredKey: surveyWithEntredKey!)
+                        } else {
+                            print("You aren't registered in any surveys... this is your first")
+                            
+                            let surveyName = (surveyWithEntredKey!["name"]!)! as! String
+                            
+                            print("Survey exitst: " + surveyName)
+                            self.giveSurveyPermsFromKeyAndUserID(key, userID: userID)
+                            
+                            self.activityIndicator.stopAnimating()
+                            
+                            let message = "You've joined the survey: " + surveyName
+                            let alert = UIAlertController(title: "Successful!", message: message, preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+                            self.presentViewController(alert, animated: true){}
+                            
+                        }
                         
                         })
                 

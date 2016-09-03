@@ -22,15 +22,20 @@ class SurveyListView: UITableViewController {
     func getValidSurveysForUserID(userID: String) {
         database.reference().child("/users-permissions").child(userID).observeEventType(.Value, withBlock: { (permissedSurveys) in
             
-            if permissedSurveys.value != nil {
+            if permissedSurveys.value != nil && permissedSurveys.childrenCount > 0 {
                 
-                if let surveyIterator = permissedSurveys.value!["granted"]! as? [String: AnyObject] {
+                if let surveyIterator = permissedSurveys.value?["granted"]! as? [String: AnyObject] {
                     
-                    for survey in surveyIterator {
-                        
-                        self.surveyKeys.append(survey.0)
-                        print("Appended survey with key: " + survey.0 + " to the valid surveys list...")
-                        
+                    if surveyIterator.count > 0 {
+                    
+                        for survey in surveyIterator {
+                            
+                            self.surveyKeys.append(survey.0)
+                            print("Appended survey with key: " + survey.0 + " to the valid surveys list...")
+                            
+                        }
+                    } else {
+                        print("No registered surveys")
                     }
                     
                 }

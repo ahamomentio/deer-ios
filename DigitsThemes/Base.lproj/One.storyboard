@@ -192,6 +192,14 @@
                                 <color key="textColor" red="0.2254111976" green="0.88202315409999998" blue="0.69752476620000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npE-YN-9Tr">
+                                <frame key="frameInset" minX="16" minY="72" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Account"/>
+                                <connections>
+                                    <segue destination="LSq-F7-OVC" kind="show" id="D10-8A-rud"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.12120146221584743" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -239,6 +247,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A09-Qi-mZ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-178.40000000000001" y="828.93553223388312"/>
+        </scene>
+        <!--Account Info-->
+        <scene sceneID="WKz-77-Jws">
+            <objects>
+                <viewController id="LSq-F7-OVC" customClass="AccountInfoView" customModule="Deer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vnl-UW-hAW"/>
+                        <viewControllerLayoutGuide type="bottom" id="Acj-fV-cRx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lgO-jf-ZEH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDY-25-Tye">
+                                <frame key="frameInset" minX="163" minY="318" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.089263750710000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.1212014622" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutFired" destination="LSq-F7-OVC" eventType="touchUpInside" id="0SA-bv-Uz9"/>
+                                    <segue destination="B4E-xC-nlf" kind="show" id="Xie-PE-gkr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.1212014622" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Account Info" id="VQi-4L-k7s"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2TG-ZE-6RL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-178" y="1537"/>
         </scene>
         <!--Surveys-->
         <scene sceneID="f68-bR-8l0">
@@ -331,10 +372,10 @@
                         <color key="sectionIndexBackgroundColor" red="0.53715894669999997" green="0.079115042290000007" blue="0.2118967954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="question" id="HEY-UW-Mx8" customClass="QuestionCell" customModule="Deer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HEY-UW-Mx8" id="GIB-qg-qyV">
-                                    <frame key="frameInset" width="342" height="44"/>
+                                    <frame key="frameInset" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qF0-FK-Mw5">
@@ -366,7 +407,7 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="828.93553223388312"/>
         </scene>
-        <!--Question-->
+        <!--Answer View-->
         <scene sceneID="yJU-SK-UEv">
             <objects>
                 <viewController id="hv2-9H-r9k" customClass="AnswerView" customModule="Deer" customModuleProvider="target" sceneMemberID="viewController">
@@ -378,37 +419,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions #1" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWv-WG-k64">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions #1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWv-WG-k64">
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaT-Ac-fYz">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="141" id="YKL-UY-wJr"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="Mic">
-                                    <color key="titleColor" red="0.96062387689999995" green="0.98150604959999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RjG-LS-qh3">
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.96062387689999995" green="0.98150604959999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxD-Vx-366">
+                                <state key="normal" title="Start Dictation"/>
                                 <connections>
-                                    <action selector="microphoneTapped:" destination="hv2-9H-r9k" eventType="touchUpInside" id="YBf-h6-JsV"/>
+                                    <action selector="microphoneTapped" destination="hv2-9H-r9k" eventType="touchUpInside" id="u6A-A1-aag"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.53715894669999997" green="0.079115042290000007" blue="0.2118967954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.1212014622" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eaT-Ac-fYz" firstAttribute="centerY" secondItem="l67-gz-BR7" secondAttribute="centerY" id="3Z9-5l-fcV"/>
-                            <constraint firstItem="eaT-Ac-fYz" firstAttribute="centerX" secondItem="QWv-WG-k64" secondAttribute="centerX" id="ACK-cm-L4V"/>
-                            <constraint firstItem="QWv-WG-k64" firstAttribute="top" secondItem="4KG-UE-4l3" secondAttribute="bottom" constant="8" symbolic="YES" id="Mhv-yO-tf6"/>
-                            <constraint firstItem="QWv-WG-k64" firstAttribute="trailing" secondItem="l67-gz-BR7" secondAttribute="trailingMargin" id="ZHG-P6-1uS"/>
-                            <constraint firstItem="ili-u2-ybl" firstAttribute="top" secondItem="eaT-Ac-fYz" secondAttribute="bottom" constant="223" id="jXf-JJ-Bop"/>
-                            <constraint firstItem="QWv-WG-k64" firstAttribute="leading" secondItem="l67-gz-BR7" secondAttribute="leadingMargin" id="xNx-eK-vkW"/>
-                            <constraint firstItem="ili-u2-ybl" firstAttribute="top" secondItem="QWv-WG-k64" secondAttribute="bottom" constant="492" id="zsy-t7-bhr"/>
+                            <constraint firstItem="bxD-Vx-366" firstAttribute="top" secondItem="l67-gz-BR7" secondAttribute="top" constant="231" id="473-zP-OPL"/>
+                            <constraint firstItem="RjG-LS-qh3" firstAttribute="trailing" secondItem="bxD-Vx-366" secondAttribute="trailing" id="5rX-5y-Pwp"/>
+                            <constraint firstItem="RjG-LS-qh3" firstAttribute="top" secondItem="bxD-Vx-366" secondAttribute="bottom" constant="8" symbolic="YES" id="BIK-Xh-Bsc"/>
+                            <constraint firstItem="RjG-LS-qh3" firstAttribute="centerY" secondItem="l67-gz-BR7" secondAttribute="centerY" id="Rd8-7t-HWl"/>
+                            <constraint firstItem="QWv-WG-k64" firstAttribute="centerX" secondItem="bxD-Vx-366" secondAttribute="centerX" id="TO6-UI-d5P"/>
+                            <constraint firstItem="bxD-Vx-366" firstAttribute="centerX" secondItem="l67-gz-BR7" secondAttribute="centerX" id="Ysl-DK-1Ud"/>
+                            <constraint firstItem="QWv-WG-k64" firstAttribute="top" secondItem="4KG-UE-4l3" secondAttribute="bottom" constant="8" symbolic="YES" id="bKH-8O-HpZ"/>
+                            <constraint firstItem="QWv-WG-k64" firstAttribute="leading" secondItem="l67-gz-BR7" secondAttribute="leadingMargin" id="geJ-o6-Wtp"/>
+                            <constraint firstItem="RjG-LS-qh3" firstAttribute="leading" secondItem="bxD-Vx-366" secondAttribute="leading" id="jYQ-0K-yrp"/>
+                            <constraint firstItem="bxD-Vx-366" firstAttribute="leading" secondItem="l67-gz-BR7" secondAttribute="leadingMargin" constant="51" id="m8x-G7-lwM"/>
+                            <constraint firstItem="bxD-Vx-366" firstAttribute="top" secondItem="QWv-WG-k64" secondAttribute="bottom" constant="8" symbolic="YES" id="zdF-rP-AYn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Question" id="vsB-Ut-yw5"/>
+                    <navigationItem key="navigationItem" id="vsB-Ut-yw5"/>
                     <connections>
+                        <outlet property="microphoneButton" destination="bxD-Vx-366" id="WFp-a7-dow"/>
                         <outlet property="qTitle" destination="QWv-WG-k64" id="WdZ-7i-2WS"/>
+                        <outlet property="textView" destination="RjG-LS-qh3" id="DWs-5d-5ac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nX-my-dV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -457,7 +506,6 @@
     </scenes>
     <resources>
         <image name="AppLogo" width="550" height="550"/>
-        <image name="Mic" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fgg-35-aOM"/>
