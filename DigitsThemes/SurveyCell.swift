@@ -11,6 +11,7 @@ import UIKit
 
 class SurveyCell: UITableViewCell {
     
+    @IBOutlet var surveyKey: UILabel!
     @IBOutlet weak var surveyName: UILabel!
     @IBOutlet weak var surveyReward: UILabel!
     @IBOutlet weak var surveyTime: UILabel!

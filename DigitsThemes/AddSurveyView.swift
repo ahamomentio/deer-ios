@@ -47,21 +47,32 @@ class AddSurveyView: UIViewController, UITextFieldDelegate {
                     
                     self.databaseRef.child("/users-permissions").child(userID).child("granted").child(key).observeEventType(.Value, withBlock: { (snapshot) in
                         
-                            let val = snapshot.value!
-                            print(val)
+                        let val = snapshot.value?.boolValue
+                        print(val)
                         
+                        if val == true {
+                        
+                            self.activityIndicator.stopAnimating()
+                            
+                            let alert = UIAlertController(title: "Failure!", message: "You're already in survey: " + key, preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+                            self.presentViewController(alert, animated: true){}
+                            
+                        } else {
+                            
+                            let surveyName = String(  (surveyWithEntredKey!["name"]!)!)
+                            
+                            print("Survey exitst: " + surveyName)
+                            self.giveSurveyPermsFromKeyAndUserID(key, userID: userID)
+                            
+                            self.activityIndicator.stopAnimating()
+                            
+                            let alert = UIAlertController(title: "Successful!", message:"You've joined the survey: " + surveyName, preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+                            self.presentViewController(alert, animated: true){}
+                          
+                        }
                         })
-                    
-                    let surveyName = String(  (surveyWithEntredKey!["name"]!)!)
-                    
-                    print("Survey exitst: " + surveyName)
-                    self.giveSurveyPermsFromKeyAndUserID(key, userID: userID)
-                    
-                    self.activityIndicator.stopAnimating()
-                    
-                    let alert = UIAlertController(title: "Successful!", message:"You've joined the survey: " + surveyName, preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
-                    self.presentViewController(alert, animated: true){}
                 
                 } else {
                     

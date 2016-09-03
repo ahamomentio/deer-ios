@@ -11,11 +11,13 @@ import UIKit
 import TwitterKit
 import FirebaseDatabase
 import Firebase
+import TwitterKit
 
 class SurveyListView: UITableViewController {
     
     let database = FIRDatabase.database()
-    var data: [Survey] = [];
+    var surveyKeys: [String] = []
+    var data: [Survey] = []
     
     func delay(delay: Double, closure: ()->()) {
         dispatch_after(
@@ -28,8 +30,37 @@ class SurveyListView: UITableViewController {
         )
     }
     
+    func getValidSurveysForUserID(userID: String) {
+        database.reference().child("/users-permissions").child(userID).observeEventType(.Value, withBlock: { (permissedSurveys) in
+            
+            if permissedSurveys.value != nil {
+                
+                if let surveyIterator = permissedSurveys.value!["granted"]! as? [String: AnyObject] {
+                    
+                    for survey in surveyIterator {
+                        
+                        self.surveyKeys.append(survey.0)
+                        print("Appended survey with key: " + survey.0 + " to the valid surveys list...")
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+            })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let uid = Twitter.sharedInstance().sessionStore.session()?.userID {
+            self.getValidSurveysForUserID(uid)
+            print("Logged in with: " + uid)
+        } else {
+            print("Not logged in")
+        }
         
         let databaseRef = database.reference().child("/surveys")
         
@@ -38,10 +69,16 @@ class SurveyListView: UITableViewController {
             
             for survey in surveyDict {
                 
-                print("Adding data " + (survey.value["key"] as! String))
-                self.data.append(Survey(type: survey.value["time"] as! String, reward: survey.value["reward"] as! Int, name: survey.value["name"] as! String))
-                self.tableView.reloadData()
-
+                if self.surveyKeys.contains(survey.value["key"] as! String) {
+                    print("Adding data " + (survey.value["key"] as! String))
+                    self.data.append(Survey(type: survey.value["time"] as! String,
+                                            reward: survey.value["reward"] as! Int,
+                                            name: survey.value["name"] as! String,
+                                            key: survey.value["key"] as! String))
+                    self.tableView.reloadData()
+                } else {
+                    print("Not permitted to access: " + String(survey.value["key"] as! String))
+                }
             }
             
         })
@@ -59,6 +96,7 @@ class SurveyListView: UITableViewController {
         cell.surveyName.text = data[indexPath.item].name
         cell.surveyReward.text = "CS " + String(data[indexPath.item].reward)
         cell.surveyTime.text = data[indexPath.item].type
+        cell.surveyKey.text = data[indexPath.item].key
         return cell
     }
     
