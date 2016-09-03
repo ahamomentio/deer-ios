@@ -20,11 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        window?.tintColor = UIColor.cyanColor()
+        window?.tintColor = UIColor.whiteColor()
         
         FIRApp.configure()
-        Fabric.with([Crashlytics.self, Twitter.self])
-        Fabric.sharedSDK().debug = true
+        Fabric.with([Crashlytics.self, Twitter.self, Answers.self])
         
         return true
     }

@@ -15,7 +15,6 @@ import TwitterKit
 class AddSurveyView: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet var keyField: UITextField!
     let databaseRef = FIRDatabase.database().reference()
     
@@ -29,6 +28,34 @@ class AddSurveyView: UIViewController, UITextFieldDelegate {
         
         return true
         
+    }
+    
+    func checkFromVal(val: Bool, key: String, userID: String, surveyWithEntredKey: AnyObject) {
+        if val == true {
+            
+            self.activityIndicator.stopAnimating()
+            
+            let alertString = "You're already in survey: " + key
+            let alert = UIAlertController(title: "Failure!", message: alertString, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+            self.presentViewController(alert, animated: true){}
+            
+        } else {
+            
+            let surveyName = (surveyWithEntredKey["name"]!)! as! String
+            
+            print("Survey exitst: " + surveyName)
+            self.giveSurveyPermsFromKeyAndUserID(key, userID: userID)
+            
+            self.activityIndicator.stopAnimating()
+            
+            let message = "You've joined the survey: " + surveyName
+            let alert = UIAlertController(title: "Successful!", message: message, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+            self.presentViewController(alert, animated: true){}
+            
+        }
+
     }
     
     @IBAction func doneFired() {
@@ -47,21 +74,10 @@ class AddSurveyView: UIViewController, UITextFieldDelegate {
                     
                     self.databaseRef.child("/users-permissions").child(userID).child("granted").child(key).observeEventType(.Value, withBlock: { (snapshot) in
                         
-                            let val = snapshot.value!
-                            print(val)
+                        let val = snapshot.value?.boolValue
+                        self.checkFromVal(val!, key: key, userID: userID, surveyWithEntredKey: surveyWithEntredKey!)
                         
                         })
-                    
-                    let surveyName = String(  (surveyWithEntredKey!["name"]!)!)
-                    
-                    print("Survey exitst: " + surveyName)
-                    self.giveSurveyPermsFromKeyAndUserID(key, userID: userID)
-                    
-                    self.activityIndicator.stopAnimating()
-                    
-                    let alert = UIAlertController(title: "Successful!", message:"You've joined the survey: " + surveyName, preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
-                    self.presentViewController(alert, animated: true){}
                 
                 } else {
                     
