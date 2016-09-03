@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.tintColor = UIColor.cyanColor()
         
         FIRApp.configure()
-        Fabric.with([Crashlytics.self, Twitter.self])
+        Fabric.with([Crashlytics.self, Twitter.self, Answers.self])
         Fabric.sharedSDK().debug = true
         
         return true

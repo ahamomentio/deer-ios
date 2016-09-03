@@ -21,3 +21,5 @@ extension String {
         }
     }
 }
+
+var currentSurvey = "ABCD"
